@@ -1,0 +1,19 @@
+
+
+
+<div id="progressive" id="font-color">
+    <h3 class="loadFont center-align animated bounceInLeft" id="side1">Please Wait<span id="dot1">...</span><span
+            id="dot2">...</span></h3>
+
+    <div class="progress z-depth-1 animated bounceInLeft" id="side2">
+        <div class="progress-bar" data-transitiongoal="100"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".progress-bar").animate({
+            width: "100%"
+        }, 2500);
+    });
+</script>

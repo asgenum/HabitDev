@@ -1,0 +1,236 @@
+<!--<link rel="stylesheet" href="../../lib/html5-boilerplate/css/main.css">-->
+<!--<link rel="stylesheet" href="../../lib/html5-boilerplate/css/normalize.css">-->
+<link rel="stylesheet" href="../../app/styles/app.css">
+<!--<script src="../../lib/html5-boilerplate/js/vendor/modernizr-2.8.3.min.js"></script>-->
+
+
+<md-content flex layout="row">
+    <md-sidenav md-is-locked-open="$mdMedia('gt-xs')" class="md-sidenav-left"
+                md-component-id="left"
+                md-whiteframe="4" md-theme="altTheme" md-theme-watch ng-style="myStyle" layout="column">
+        <md-toolbar md-colors="{background: '{{primary}}-800'}" layout=" row">
+            <div class="md-toolbar-tools">
+                <h1 ng-hide="isPinned" style="cursor: default">
+                    HabitDev
+                </h1>
+                <span flex ng-hide="isPinned"></span>
+                <md-button aria-label="Menu" hide-xs class="md-icon-button" ng-click="lock()">
+                    <md-icon class="material-icons md-toolbar_icon md-24">
+                        menu
+                    </md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content flex layout-padding ng-controller="LeftCtrl">
+            <md-list flex>
+                <md-list-item class="md-2-line" ng-click="goToHome()">
+                    <md-icon style="margin:12px" class="material-icons  md-24">
+                        home
+                    </md-icon>
+                    <p ng-hide="isPinned">Домой</p>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-click="goToTasks()">
+                    <md-icon style="margin:12px" class="material-icons  md-24">
+                        dashboard
+                    </md-icon>
+                    <p ng-hide="isPinned">Задачи на сегодня</p>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-click="goToCurrentPlans()">
+                    <md-icon style="margin:12px" class="material-icons  md-24">
+                        dashboard
+                    </md-icon>
+                    <p ng-hide="isPinned">Выполняемые планы</p>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-click="goToMyPlans()">
+                    <md-icon style="margin:12px" class="material-icons  md-24">
+                        my_location
+                    </md-icon>
+                    <p ng-hide="isPinned">Мои планы</p>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-click="goToUsersPlans()">
+                    <md-icon style="margin:12px" class="material-icons  md-24">
+                        my_location
+                    </md-icon>
+                    <p ng-hide="isPinned">Общедоступные планы</p>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <md-content flex layout="column" md-theme="{{Mytheme}}">
+        <md-toolbar spy-style spy-attribute="color" md-colors="{background: '{{primary}}-800'}" md-whiteframe="7">
+            <div class="md-toolbar-tools">
+                <md-button aria-label="Menu" hide-gt-xs class="md-icon-button" ng-click="toggleLeft()">
+                    <md-icon class="material-icons md-toolbar_icon md-24">
+                        menu
+                    </md-icon>
+                </md-button>
+                <h2>
+                    <span style="cursor: default">{{title}}</span>
+                </h2>
+                <span flex></span>
+                <div>
+                    <md-icon id="Notification_icon" class="material-icons  md-toolbar_icon md-24">
+                        <svg ng-if="(Notifications | filter : {Seen:'false'}).length!=0" style="position:absolute;"
+                             width="10" height="10">
+                            <circle cx="5" cy="5" r="5" fill="#ff2828"/>
+                        </svg>
+                        notifications
+                    </md-icon>
+                    <md-content id="Notification" md-whiteframe="15" outside-click ng-show="Show_Notification">
+                        <md-list flex>
+                            <md-subheader ng-if="(Notifications | filter : {Seen:'false'}).length!=0"
+                                          class="md-no-sticky">{{ (Notifications | filter : {Seen:'false'}).length}}
+                                уведомления
+                            </md-subheader>
+                            <md-subheader ng-if="(Notifications | filter : {Seen:'false'}).length==0"
+                                          class="md-no-sticky">Caught up with everything!
+                            </md-subheader>
+                            <md-list-item class="md-1-line"
+                                          ng-repeat="Notification in Notifications | filter : {Seen:'false'}"
+                                          ng-click="Notification_Click( Notifications.indexOf(Notification))">
+                                <div layout="row" layout-align="center center">
+                                    <md-icon style="margin:0px 10px" class="material-icons md-dark  md-24">
+                                        {{Notification.Icon}}
+                                    </md-icon>
+                                    <p class="md-list-item-text">{{Notification.Name}}</p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </div>
+                <md-button aria-label="Menu" class="md-icon-button" ng-click="goToUsersStatistic()">
+                    <md-icon class="material-icons md-toolbar_icon md-24">
+                        group
+                    </md-icon>
+                </md-button>
+                <div class="User_Button">
+                    <label id="User_Profile_icon" class="md-list-item-text" hide-xs>{{(user.firstName + ' ' + user.lastName) | titleCase }}</label>
+                    <img md-whiteframe="10" class="md-user-avatar" ng-src="../../app/images/user.png" alt="{{(user.firstName + ' ' + user.lastName)}}"/>
+                    <md-content id="User_Profile" outside-click md-whiteframe="15" ng-show="Show_User_Profile">
+                        <md-list flex>
+                            <md-list-item class="md-1-line">
+                                <md-button style="width: 100%">
+                                    <i class="material-icons">account_box</i>
+                                    <p class="md-list-item-text">
+                                        Мой аккаунт
+                                    </p>
+                                </md-button>
+                            </md-list-item>
+                            <md-list-item class="md-1-line">
+                                <md-button style="width: 100%" ng-click="logout()">
+                                    <i class="material-icons">power_settings_new</i>
+                                    <p class="md-list-item-text">
+                                        Выйти
+                                    </p>
+                                </md-button>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </div>
+
+            </div>
+        </md-toolbar>
+        <md-progress-linear md-colors="{background: '{{primary}}'}" ng-if="Load_Document" class="md-accent"
+                            md-mode="indeterminate"></md-progress-linear>
+        <md-content flex>
+            <!--ЗДЕСЬ ВЬЮШКА-->
+            <div ui-view></div>
+            <md-sidenav class="md-sidenav-right md-whiteframe-14dp" md-component-id="right" layout="column">
+                <md-content flex layout="column" layout-wrap>
+                    <md-sidenav class="md-sidenav-right md-whiteframe-14dp" md-component-id="right2"
+                                layout="column">
+                        <md-toolbar md-colors="::{backgroundColor: 'background'}">
+                            <div class="md-toolbar-tools" layout="row" layout-align="start center">
+                                <md-button aria-label="Menu" class="md-icon-button" ng-click="Back_To_Chat()">
+                                    <md-icon class="material-icons md-dark md-24">
+                                        keyboard_arrow_left
+                                    </md-icon>
+                                </md-button>
+                                <h2 layout-align="center center">
+                                    {{Chat_Person.Name}}
+                                </h2>
+                                <span flex></span>
+                                <div id="Online_circle_toolbar"
+                                     ng-class="{'active' : Chat_Person.Online , 'inactive' : !Chat_Person.Online}"></div>
+                                <small ng-if="Chat_Person.Online">Online</small>
+                                <small ng-if="!Chat_Person.Online">Offline</small>
+                            </div>
+                        </md-toolbar>
+                        <md-content flex layout="column" layout-wrap>
+                            <div class="messages_box_content" id="chatBox" scroll-to-bottom="Chat_Person.messages">
+                                <div ng-repeat="message in Chat_Person.messages" class="chat-conversation-user "
+                                     ng-class=" {'him':message.From=='him', 'me':message.From=='me' }">
+                                    <div style="padding-bottom: 12px;font-size: 80%;"
+                                         ng-bind="formatDate(message.Date)">
+                                    </div>
+                                    <div class="chat_content_message">
+                                        <p>
+                                            {{message.msg}}
+                                            <br/>
+                                            <small> {{message.Time}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="send_box_content" md-colors="::{backgroundColor: 'background'}"
+                                     id="msgbox"
+                                     layout="row">
+                                    <ng-form name="msgsend" layout="row">
+                                        <md-icon class="material-icons md-dark md-24">
+                                            photo_camera
+                                        </md-icon>
+                                        <input ng-model="my_message" type="text"
+                                               md-colors="::{backgroundColor: 'background'}" class="message_box"
+                                               ng-keyup="$event.keyCode == 13 && Send_message(my_message) "/>
+                                        <md-icon
+                                                ng-class="{'send_active' : my_message , 'send_inactive' : !my_message}"
+                                                class="material-icons  md-24" ng-click="Send_message(my_message)">
+                                            send
+                                        </md-icon>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-sidenav>
+
+                    <md-tabs id="Chat" flex md-border-bottom>
+                        <md-tab>
+                            <md-tab-body class="md-padding">
+                                <md-subheader class="md-no-sticky">Мои ученики</md-subheader>
+                                <md-list-item ng-repeat="person in people" ng-if="person.Online"
+                                              ng-click="goToPerson(person, $event)" class="noright">
+                                    <!--<div id="Online_circle"-->
+                                         <!--ng-class="{'active' : person.Online , 'inactive' : !person.Online}"></div>-->
+                                    <!--<div id="White_circle"></div>-->
+                                    <!--<img alt="{{ person.Name }}" ng-src="{{ person.img }}" class="md-avatar"/>-->
+                                    <p>{{ person.Name }}</p>
+                                </md-list-item>
+                            </md-tab-body>
+                            <md-tab-label>
+                                <md-icon class="material-icons  md-dark md-24">
+                                    people
+                                </md-icon>
+                            </md-tab-label>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <md-icon class="material-icons  md-dark md-24">
+                                    settings
+                                </md-icon>
+                            </md-tab-label>
+                            <md-tab-body>
+                                <md-content>
+                                    <md-list-item ng-repeat="color in colors" md-colors="{background: '{{color}}'}"
+                                                  md-colors-watch="false" aria-label="Menu"
+                                                  ng-click="selectThemePrimary(color)">
+                                    </md-list-item>
+                                </md-content>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+
+
+                </md-content>
+            </md-sidenav>
+        </md-content>
+    </md-content>
+</md-content>

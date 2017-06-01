@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+.loadFont {
+    font-family: 'Poiret One', cursive;
+}
+
+#progressive {
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+}
+.progress {
+    position: relative;
+    height: 10px;
+    display: block;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    margin: 0.5rem 0 1rem 0;
+    overflow: hidden;
+}
+
+
+.progress-bar {
+    float: left;
+    height: 100%;
+    background-color: #b71c1c;
+    -webkit-transition: width 5s ease;
+    -o-transition: width 5s ease;
+    transition: width 5s ease;
+}
+
+
+#side1 { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s; }
+#side2 { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s; }

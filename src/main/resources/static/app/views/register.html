@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../../app/styles/login.css">
+
+<div class="container">
+	<div id="signup">
+		<div class="signup-screen">
+			<div class="space-bot text-center">
+				<h1>Регистрация</h1>
+				<div class="divider"></div>
+			</div>
+			<form class="form-register" method="post" name="registerForm" novalidate>
+				<div class="input-field col s6">
+					<input id="first-name" type="text" class="validate" required ng-model="appUser.firstName">
+					<label for="first-name">Имя</label>
+				</div>
+				<p class="alert alert-danger" ng-show="registerForm.first-name.$dirty || registerForm.first-name.$error.required">Введите Ваше имя</p>
+				<div class="input-field col s6">
+					<input id="last-name" type="text" class="validate" required ng-model="appUser.lastName">
+					<label for="last-name">Фамилия</label>
+				</div>
+				<p class="alert alert-danger" ng-show="registerForm.last-name.$dirty || registerForm.last-name.$error.required">Введите Вашу фамилию</p>
+				<div class="input-field col s6">
+					<input id="username" type="text" class="validate" required ng-model="appUser.username">
+					<label for="username">Имя пользователя</label>
+				</div>
+				<p class="alert alert-danger" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">Введите имя пользователя</p>
+				<div class="input-field col s6">
+					<input id="email" type="email" name="email" ng-model="appUser.email" class="validate" required>
+					<label for="email">Email</label>
+				</div>
+				<p class="alert alert-danger" ng-show="registerForm.email.$error.email">Введённый Вами email некорректен.</p>
+				<div class="input-field col s6">
+					<input id="password" type="password" name="password" ng-model="appUser.password" ng-minlength='5' class="validate" required>
+					<label for="password">Пароль</label>
+				</div>
+				<p class="alert alert-danger" ng-show="registerForm.password.$error.minlength && registerForm.password.$invalid">Длина Вашего пароля должна составлять не менее 5 символов.</p>
+				<div class="space-top text-center">
+					<button ng-disabled="registerForm.$invalid" class="waves-effect waves-light btn done" ng-click="submit()">
+						<i class="material-icons left">done</i>Подтвердить
+					</button>
+					<button type="button" class="waves-effect waves-light btn cancel" ui-sref="login">
+						<i class="material-icons left">clear</i>Назад
+					</button>
+					<p class="alert alert-danger" ng-show="errorMessage">{{errorMessage}}</p>
+					<p class="alert" id="goodAlert" ng-show="submitMessage">{{submitMessage}}</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

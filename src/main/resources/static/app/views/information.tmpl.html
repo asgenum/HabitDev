@@ -1,0 +1,28 @@
+<md-dialog aria-label="Information">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-bind-html="headerContent"></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons  md-24" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content" ng-bind-html="item">
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer()">
+                Отмена
+            </md-button>
+            <md-button ng-click="answer('Ok')">
+                Выполнить
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

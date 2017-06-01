@@ -1,0 +1,212 @@
+@charset "utf-8";
+/* CSS Document */
+h1 {
+	font-weight: 700;
+}
+h2, h3 {
+	font-weight: 600;
+}
+h4, h5, h6 {
+	font-weight: 600;
+}
+a {
+	color: #c2185b;
+}
+a:hover {
+	color: #f48fb1;
+}
+nav ul a:hover {
+	background-color: transparent;
+	color: #d81b60;
+}
+nav ul a.active {
+	color: #f48fb1;
+}
+nav {
+	background-color: transparent;
+	z-index: 9;
+	box-shadow: none;
+	position: fixed;
+}
+.scrolled-nav {
+	background-color: #880e4f;
+}
+#sidenav-overlay {
+	z-index: 2;
+}
+.brand-logo {
+	font-weight: 700;
+}
+.hero-image {
+	background: url(../images/home_background.jpg) no-repeat center top;
+	background-size: cover;
+	position: relative;
+}
+.hero-image-text {
+	z-index: 2;
+	position: relative;
+	padding-top: 16%;
+	padding-bottom: 11%;
+}
+.overlay {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6e46f5+1,6e46f5+100&1+0,0.13+100 */
+	background: -moz-linear-gradient(-45deg, rgba(110,70,245,1) 0%, rgba(110,70,245,0.99) 1%, rgba(110,70,245,0.13) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, rgba(110,70,245,1) 0%, rgba(110,70,245,0.99) 1%, rgba(110,70,245,0.13) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, rgba(110,70,245,1) 0%, rgba(110,70,245,0.99) 1%, rgba(110,70,245,0.13) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e46f5', endColorstr='#216e46f5', GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	z-index: 1;
+}
+.space-top-1 {
+	margin-top: 40px;
+}
+.space-top-2 {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.space-top-3 {
+	margin-top: 135px;
+}
+.carousel .carousel-item {
+	width: 600px;
+	height: 550px;
+}
+.carousel {
+	height: 550px;
+}
+.slider .indicators .indicator-item.active {
+	background-color: #c2185b;
+}
+.icon-circle {
+	background-color: #c2185b;
+	border: 8px solid #f48fb1;
+	color: #fff;
+	height: 100px;
+	width: 100px;
+	border-radius: 100px;
+	position: relative;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+.icon-circle i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.dash:after {
+	content: ' ';
+	display: block;
+	border: 1px solid #c2185b;
+	width: 100px;
+	margin: 20px auto 30px;
+}
+.dash2:after {
+	content: ' ';
+	display: block;
+	border: 1px solid #c2185b;
+	width: 100px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.testimonials .slides {
+	background:#983643 url(../images/strip-background.jpg) no-repeat center top;
+}
+.testi-image {
+	width: 200px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.testi-image img {
+	border-radius: 200px;
+}
+.testi-text {
+	width: 60%;
+	margin: 0 auto;
+	color: #fff;
+}
+.testi-text p {
+	margin-bottom: 30px;
+}
+ul.more-height[style] {
+	height: 530px !important;
+}
+.testimonials[style] {
+	height: 450px !important;
+}
+.testimonials .indicators {
+	z-index: 9999;
+	bottom: -25px;
+}
+.packages {
+	background: url(../images/pricing-section.jpg) no-repeat center top;
+	background-size: cover;
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+.pricing {
+	background: rgba(255,255,255,0.1);
+	padding: 23px 40px 30px;
+	border-radius: 8px;
+	margin: 0 0 30px;
+}
+.pricing .plan-title {
+	color: #ffffff;
+	font-size: 18px;
+	padding-bottom: 15px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 300;
+	border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+.pricing-tag {
+	font-size: 72px;
+	letter-spacing: 0.02em;
+	line-height: 1.6em;
+	display: block;
+	font-weight: 600;
+}
+.price-list li {
+	margin-bottom: 10px;
+}
+.price-list li i {
+	margin-right: 10px;
+	margin-top: 4px;
+	float: left;
+}
+.page-footer {
+	background-color: #242433;
+	padding: 25px 0;
+}
+@media(max-width:600px) {
+.hero-image-text h1 {
+	font-size: 2.5rem;
+}
+.icon-circle {
+	margin-top: 60px;
+}
+.carousel .carousel-item {
+	width: 350px;
+	height: 350px;
+}
+.carousel {
+	height: 550px;
+}
+.hero-image-text {
+	padding-top: 25%;
+	padding-bottom: 15%;
+}
+.testi-text {
+	width: 95%;
+}
+ul.more-height[style] {
+	height: 600px !important;
+}
+.testimonials[style] {
+	height: 550px !important;
+}
+}
